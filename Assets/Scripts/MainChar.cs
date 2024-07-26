@@ -8,8 +8,10 @@ public class MainChar : MonoBehaviour
 {
     public static MainChar Instance { get; private set; }
 
-    [SerializeField] float MovementSpeed;
-    [SerializeField] float RotationSpeed = 360;
+    public float MovementSpeed;
+    public float RotationSpeed = 360;
+
+    public GameObject PhysicsVasePrefab;
 
     bool CanControl = true;
     Vector3 moveInput;
@@ -18,6 +20,8 @@ public class MainChar : MonoBehaviour
     protected Quaternion TargetRotation;
 
     protected Animator Animator;
+
+    float balance;
 
     void Awake()
     {
@@ -30,6 +34,19 @@ public class MainChar : MonoBehaviour
         Rotation();
 
         GetComponent<CharacterController>().Move(controlMovement);
+
+        var Vase = transform.Find("Vase");
+        if(Vase != null)
+        {
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * 10 * balance);
+            float vaseAngle = Vector3.AngleBetween(Vector3.up, Vase.up) * Mathf.Rad2Deg;
+
+            if (vaseAngle > 35)
+            {
+                Instantiate(PhysicsVasePrefab, Vase.Find("VaseModel").position, Vase.Find("VaseModel").rotation).transform.localScale = Vase.Find("VaseModel").localScale;
+                Destroy(Vase.gameObject);
+            }
+        }
     }
 
     void Walk()
@@ -68,12 +85,10 @@ public class MainChar : MonoBehaviour
         if (!CanControl) return;
         moveInput = new Vector3(raw.x, 0, raw.y);
     }
+
     public void OnBalance(InputValue value)
     {
-        print(value.Get<float>());
-
-        var Vase = transform.Find("Vase");
-        Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z + Time.deltaTime * 10);
+        balance = value.Get<float>();
     }
 
 }

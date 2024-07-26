@@ -34,12 +34,12 @@
                 },
                 {
                     "name": "Balance",
-                    "type": "Button",
-                    "id": "ff9ab5eb-35f3-4802-9fac-8d24dd8376ee",
-                    "expectedControlType": "Button",
+                    "type": "Value",
+                    "id": "ccfbcc7f-e9db-4e7a-81fc-02dab95657ca",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -265,7 +265,7 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "03bc35ca-6b1e-40f3-aab0-d252d440b50f",
+                    "id": "ba0654f1-37ac-424c-9038-4481e5c6ab46",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -276,7 +276,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "707b000f-2d6d-4018-bc61-da1f9af4fcd4",
+                    "id": "a1f79e92-f95c-47f4-ba88-3a30875984f3",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
@@ -287,41 +287,8 @@
                 },
                 {
                     "name": "positive",
-                    "id": "8a046eba-d630-4d2c-b12a-9bf37e6a01c5",
+                    "id": "8aba00b9-611d-429b-b338-450663679cf8",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Balance",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "923318bd-b056-403a-ba4e-dbab710323ce",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Balance",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "7a985cdb-a36d-4c4b-bdb5-e60183d7f9b4",
-                    "path": "<Keyboard>/j",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Balance",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "b7e514be-c7c5-4165-9cdd-315e9a476f5e",
-                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
