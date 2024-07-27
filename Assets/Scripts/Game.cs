@@ -69,7 +69,6 @@ public class Game : MonoBehaviour
         currentLevel++;
         if (currentLevel < Levels.Count)
         {
-            // totalPoints += currentLevelPoints;
             currentLevelPoints = 0;
             SceneManager.LoadScene(Levels[currentLevel]);
 
@@ -106,4 +105,24 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(Levels[currentLevel]);
     }
 
+    public void DebugNextLevel()
+    {
+        currentLevel++;
+        if (currentLevel < Levels.Count)
+        {
+            currentLevelPoints = 0;
+            SceneManager.LoadScene(Levels[currentLevel]);
+
+            AudioManager.Play("laurent_musica_gameplay", true);
+            AudioManager.Stop("laurent_musica_rotura");
+        }
+        else
+        {
+            AudioManager.Stop("laurent_musica_gameplay");
+            AudioManager.Stop("laurent_musica_rotura");
+            AudioManager.Play("laurent_musica_menu", true);
+
+            SceneManager.LoadScene("GameEnd");
+        }
+    }
 }

@@ -75,6 +75,10 @@ public class MainChar : MonoBehaviour
             Time.timeScale = 1;
             SceneManager.LoadScene(0);
         }
+        if(keyboard.nKey.wasPressedThisFrame)
+        {
+            Game.Instance.DebugNextLevel();
+        }
     }
 
     IEnumerator VaseFall()
