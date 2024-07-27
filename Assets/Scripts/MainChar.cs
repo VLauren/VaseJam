@@ -13,19 +13,26 @@ public class MainChar : MonoBehaviour
 
     public GameObject PhysicsVasePrefab;
 
+    public float MaxTilt = 30;
+
     bool CanControl = true;
     Vector3 moveInput;
     Vector3 controlMovement;
 
     protected Quaternion TargetRotation;
-
     protected Animator Animator;
+    protected Transform Vase;
 
-    float balance;
+    float balanceInput;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        Vase = transform.Find("Vase");
     }
 
     void Update()
@@ -35,18 +42,30 @@ public class MainChar : MonoBehaviour
 
         GetComponent<CharacterController>().Move(controlMovement);
 
-        var Vase = transform.Find("Vase");
         if(Vase != null)
         {
-            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * 10 * balance);
-            float vaseAngle = Vector3.AngleBetween(Vector3.up, Vase.up) * Mathf.Rad2Deg;
 
-            if (vaseAngle > 35)
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * 10 * balanceInput);
+            float vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
+
+            print(vaseAngle + " - " +Time.deltaTime * 10 * balanceInput);
+
+            if (vaseAngle > MaxTilt)
             {
                 Instantiate(PhysicsVasePrefab, Vase.Find("VaseModel").position, Vase.Find("VaseModel").rotation).transform.localScale = Vase.Find("VaseModel").localScale;
                 Destroy(Vase.gameObject);
             }
         }
+    }
+
+    public float GetVaseTilt()
+    {
+        if(Vase != null)
+        {
+            print(Vector3.SignedAngle(Vector3.up, Vase.up, transform.forward) + " asd?");
+            return Vector3.SignedAngle(Vector3.up, Vase.up, transform.forward) / MaxTilt;
+        }
+        return 0;
     }
 
     void Walk()
@@ -88,7 +107,7 @@ public class MainChar : MonoBehaviour
 
     public void OnBalance(InputValue value)
     {
-        balance = value.Get<float>();
+        balanceInput = value.Get<float>();
     }
 
 }
