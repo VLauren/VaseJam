@@ -9,6 +9,7 @@ public class MainChar : MonoBehaviour
     public static MainChar Instance { get; private set; }
 
     public float MovementSpeed;
+    public float GravityAccel = -1;
     public float RotationSpeed = 360;
 
     public GameObject PhysicsVasePrefab;
@@ -27,6 +28,7 @@ public class MainChar : MonoBehaviour
     float BalanceInput;
 
     protected Quaternion TargetRotation;
+    protected float VerticalVelocity;
     protected Animator Animator;
     protected Transform Vase;
 
@@ -56,32 +58,16 @@ public class MainChar : MonoBehaviour
     {
         Walk();
         Rotation();
+        Gravity();
+        VaseLogic();
 
-        GetComponent<CharacterController>().Move(ControlMovement);
-
-        if(Vase != null)
-        {
-            // Control de inclinacion
-            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * TiltControlStrength * BalanceInput);
-            // Oscilacion aleatoria
-            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * OscilationStrength * OscilationVal);
-
-            float vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
-
-            // Caida
-            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * FallingStrength * vaseAngle);
-
-            vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
-
-            if (vaseAngle > MaxTilt)
-            {
-                StartCoroutine(VaseFall());
-            }
-        }
     }
 
     IEnumerator VaseFall()
     {
+        print("vase fall!!");
+        Time.timeScale = 0.5f;
+
         GameObject physVase = Instantiate(PhysicsVasePrefab, Vase.Find("VaseModel").position, Vase.Find("VaseModel").rotation);
         physVase.transform.localScale = Vase.Find("VaseModel").localScale;
         physVase.GetComponentInChildren<BreakableObject>().Breakable = false;
@@ -141,6 +127,42 @@ public class MainChar : MonoBehaviour
         }
     }
 
+    void Gravity()
+    {
+        if (!CanControl) return;
+
+        if (GetComponent<CharacterController>().isGrounded && VerticalVelocity < 0)
+            VerticalVelocity = 0;
+        VerticalVelocity += GravityAccel * Time.fixedDeltaTime;
+
+        bool grounded = GetComponent<CharacterController>().isGrounded;
+
+        GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
+    }
+
+    void VaseLogic()
+    {
+        if(Vase != null)
+        {
+            // Control de inclinacion
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * TiltControlStrength * BalanceInput);
+            // Oscilacion aleatoria
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * OscilationStrength * OscilationVal);
+
+            float vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
+
+            // Caida
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * FallingStrength * vaseAngle);
+
+            vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
+
+            if (vaseAngle > MaxTilt)
+            {
+                StartCoroutine(VaseFall());
+            }
+        }
+    }
+
     public void OnMove(InputValue value)
     {
         Vector2 raw = value.Get<Vector2>();
@@ -154,5 +176,13 @@ public class MainChar : MonoBehaviour
         BalanceInput = value.Get<float>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<MainChar>() == null)
+        {
+            if (CanControl)
+                StartCoroutine(VaseFall());
+        }
+    }
 }
 

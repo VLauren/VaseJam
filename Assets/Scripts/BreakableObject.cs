@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BreakableObject : MonoBehaviour
 {
+    static float RandomForce = 1500;
+
     public bool StartBreakable = false;
     public bool Breakable = false;
 
@@ -30,24 +32,24 @@ public class BreakableObject : MonoBehaviour
         {
             foreach (var contact in collision.contacts)
             {
-                GetComponent<Rigidbody>().AddForce(contact.normal * 200 + Random.onUnitSphere * 150);
+                GetComponent<Rigidbody>().AddForce(contact.normal * 200 + Random.onUnitSphere * 300);
             }
 
             if (collision.GetContact(0).otherCollider.gameObject.CompareTag("Ground"))
             {
-                print("Collision! ");
-
                 Vector3 vel = GetComponent<Rigidbody>().velocity;
 
-                Vector3 spawnPos = transform.root.Find("Object").GetChild(0).Find("SpawnPosition").position;
+                Transform spawnPos = transform.root.Find("Object").GetChild(0).Find("SpawnPosition");
                 transform.root.Find("Object").gameObject.SetActive(false);
-                transform.root.Find("BrokenObject").position = spawnPos;
+                transform.root.Find("BrokenObject").position = spawnPos.position;
+                transform.root.Find("BrokenObject").rotation = spawnPos.rotation;
                 transform.root.Find("BrokenObject").gameObject.SetActive(true);
 
                 foreach (Transform tr in transform.root.Find("BrokenObject"))
                 {
                     tr.GetComponent<Rigidbody>().velocity = vel;
-                    GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * 1500);
+                    GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * RandomForce);
+                    RandomForce += 100;
                 }
             }
         }

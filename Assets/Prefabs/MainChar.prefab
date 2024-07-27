@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7673410482370362670}
   - component: {fileID: 7673410482370362656}
   - component: {fileID: 7673410482370362666}
+  - component: {fileID: 9032101448524773703}
   - component: {fileID: 7673410482370362657}
   m_Layer: 0
   m_Name: MainChar
@@ -84,6 +85,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!136 &9032101448524773703
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673410482370362664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6265063
+  m_Height: 2.4045353
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.4537067, z: 0}
 --- !u!114 &7673410482370362657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +222,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: VaseModel
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3451118302482216456, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3451118302482216456, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
 --- !u!4 &6424530136662646953 stripped
 Transform:
