@@ -15,15 +15,23 @@ public class MainChar : MonoBehaviour
 
     public float MaxTilt = 30;
 
+    [Space(10)]
+    public float TiltControlStrength = 10;
+    public float OscilationStrength;
+    public float OscilationFreq;
+    public float FallingStrength;
+
     bool CanControl = true;
-    Vector3 moveInput;
-    Vector3 controlMovement;
+    Vector3 MoveInput;
+    Vector3 ControlMovement;
+    float BalanceInput;
 
     protected Quaternion TargetRotation;
     protected Animator Animator;
     protected Transform Vase;
 
-    float balanceInput;
+
+    float OscilationVal;
 
     void Awake()
     {
@@ -33,6 +41,12 @@ public class MainChar : MonoBehaviour
     private void Start()
     {
         Vase = transform.Find("Vase");
+        InvokeRepeating("ChangeOsc", OscilationFreq, OscilationFreq);
+    }
+
+    void ChangeOsc()
+    {
+        OscilationVal = -1 + Random.value * 2;
     }
 
     void Update()
@@ -40,15 +54,21 @@ public class MainChar : MonoBehaviour
         Walk();
         Rotation();
 
-        GetComponent<CharacterController>().Move(controlMovement);
+        GetComponent<CharacterController>().Move(ControlMovement);
 
         if(Vase != null)
         {
+            // Control de inclinacion
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * TiltControlStrength * BalanceInput);
+            // Oscilacion aleatoria
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * OscilationStrength * OscilationVal);
 
-            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * 10 * balanceInput);
             float vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
 
-            print(vaseAngle + " - " +Time.deltaTime * 10 * balanceInput);
+            // Caida
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * FallingStrength * vaseAngle);
+
+            vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
 
             if (vaseAngle > MaxTilt)
             {
@@ -62,7 +82,6 @@ public class MainChar : MonoBehaviour
     {
         if(Vase != null)
         {
-            print(Vector3.SignedAngle(Vector3.up, Vase.up, transform.forward) + " asd?");
             return Vector3.SignedAngle(Vector3.up, Vase.up, transform.forward) / MaxTilt;
         }
         return 0;
@@ -72,14 +91,14 @@ public class MainChar : MonoBehaviour
     {
         if (!CanControl) return;
 
-        if (moveInput.magnitude < 0.1f) moveInput = Vector3.zero;
+        if (MoveInput.magnitude < 0.1f) MoveInput = Vector3.zero;
 
-        controlMovement = Vector3.zero;
-        controlMovement = moveInput * Time.deltaTime * MovementSpeed;
+        ControlMovement = Vector3.zero;
+        ControlMovement = MoveInput * Time.deltaTime * MovementSpeed;
 
         if (Animator != null)
         {
-            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), moveInput.magnitude, Time.deltaTime * 10);
+            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), MoveInput.magnitude, Time.deltaTime * 10);
             Animator.SetFloat("MovementSpeed", newMS);
         }
     }
@@ -89,10 +108,10 @@ public class MainChar : MonoBehaviour
 
         float rCam = Camera.main.transform.eulerAngles.y;
         // Direccion relativa a camara
-        controlMovement = Quaternion.Euler(0, rCam, 0) * controlMovement;
-        if (controlMovement != Vector3.zero)
+        ControlMovement = Quaternion.Euler(0, rCam, 0) * ControlMovement;
+        if (ControlMovement != Vector3.zero)
         {
-            TargetRotation = Quaternion.LookRotation(controlMovement, Vector3.up);
+            TargetRotation = Quaternion.LookRotation(ControlMovement, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, TargetRotation, Time.deltaTime * RotationSpeed);
         }
     }
@@ -100,14 +119,14 @@ public class MainChar : MonoBehaviour
     public void OnMove(InputValue value)
     {
         Vector2 raw = value.Get<Vector2>();
-        moveInput = Vector2.zero;
+        MoveInput = Vector2.zero;
         if (!CanControl) return;
-        moveInput = new Vector3(raw.x, 0, raw.y);
+        MoveInput = new Vector3(raw.x, 0, raw.y);
     }
 
     public void OnBalance(InputValue value)
     {
-        balanceInput = value.Get<float>();
+        BalanceInput = value.Get<float>();
     }
 
 }
