@@ -54,7 +54,7 @@ public class Game : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
 
-        while (Time.time < LastScoreTime + 2)
+        while (Time.time < LastScoreTime + 3.5f)
         {
             yield return null;
         }

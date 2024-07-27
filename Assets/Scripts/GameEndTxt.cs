@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEndTxt : MonoBehaviour
 {
@@ -12,6 +13,6 @@ public class GameEndTxt : MonoBehaviour
 
     void OnAny()
     {
-        Game.Instance.StartGame();
+        SceneManager.LoadScene(0);
     }
 }
