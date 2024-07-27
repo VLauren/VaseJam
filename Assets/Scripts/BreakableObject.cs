@@ -52,6 +52,8 @@ public class BreakableObject : MonoBehaviour
                     GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * RandomForce);
                     RandomForce += 100;
                 }
+
+                Game.Instance.AddScore((int)collision.impulse.magnitude * 100);
             }
         }
     }

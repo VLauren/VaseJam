@@ -22,7 +22,9 @@ public class MainChar : MonoBehaviour
     public float OscilationFreq;
     public float FallingStrength;
 
-    bool CanControl = true;
+    [Space(10)]
+    public bool CanControl = true;
+
     Vector3 MoveInput;
     Vector3 ControlMovement;
     float BalanceInput;
@@ -90,6 +92,8 @@ public class MainChar : MonoBehaviour
         if (Animator != null)
             Animator.SetTrigger("Fall");
         // yield return new WaitForSeconds(0.5f);
+
+        Game.Instance.LevelEnd();
 
         // physVase.GetComponentInChildren<BreakableObject>().Breakable = true;
         yield return null;

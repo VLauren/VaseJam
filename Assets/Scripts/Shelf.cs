@@ -32,8 +32,6 @@ public class Shelf : MonoBehaviour
 
     public void Fall()
     {
-        print("fall");
-
         Falling = true;
 
         GetComponent<Rigidbody>().velocity = FallVelocity;
