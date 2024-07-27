@@ -56,7 +56,7 @@ public class Game : MonoBehaviour
 
         while (Time.time < LastScoreTime + 4)
         {
-            print(Time.time + " < " + (LastScoreTime + 7));
+            print(Time.time + " < " + (LastScoreTime + 4));
             yield return null;
         }
 

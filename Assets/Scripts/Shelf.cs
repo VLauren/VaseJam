@@ -34,8 +34,8 @@ public class Shelf : MonoBehaviour
     {
         Falling = true;
 
-        GetComponent<Rigidbody>().velocity = FallVelocity;
-        GetComponent<Rigidbody>().angularVelocity = FallAngularVelocity;
+        GetComponent<Rigidbody>().velocity = Quaternion.Euler(0, transform.eulerAngles.y, 0) * FallVelocity;
+        GetComponent<Rigidbody>().angularVelocity = Quaternion.Euler(0, transform.eulerAngles.y, 0) * FallAngularVelocity;
 
     }
 }
