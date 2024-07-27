@@ -61,11 +61,18 @@ public class MainChar : MonoBehaviour
         Gravity();
         VaseLogic();
 
+        var keyboard = Keyboard.current;
+        if (keyboard.rKey.wasPressedThisFrame)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(0);
+        }
     }
 
     IEnumerator VaseFall()
     {
-        print("vase fall!!");
+        float vaseAngle = Vector3.SignedAngle(Vector3.up, Vase.up, transform.forward);
+
         Time.timeScale = 0.5f;
 
         GameObject physVase = Instantiate(PhysicsVasePrefab, Vase.Find("VaseModel").position, Vase.Find("VaseModel").rotation);
@@ -74,7 +81,7 @@ public class MainChar : MonoBehaviour
 
         Destroy(Vase.gameObject);
 
-        physVase.GetComponentInChildren<BreakableObject>().GetComponent<Rigidbody>().AddForce((transform.right + Vector3.up) * 1000);
+        physVase.GetComponentInChildren<BreakableObject>().GetComponent<Rigidbody>().AddForce((transform.right * (vaseAngle < 0 ? -1 : 1) + Vector3.up) * 1000);
 
         CanControl = false;
 
@@ -149,10 +156,10 @@ public class MainChar : MonoBehaviour
             // Oscilacion aleatoria
             Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * OscilationStrength * OscilationVal);
 
-            float vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
+            float vaseAngle = Vector3.SignedAngle(Vector3.up, Vase.up, transform.forward);
 
             // Caida
-            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * FallingStrength * vaseAngle);
+            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z + Time.deltaTime * FallingStrength * vaseAngle);
 
             vaseAngle = Vector3.Angle(Vector3.up, Vase.up);
 

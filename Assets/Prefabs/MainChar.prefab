@@ -95,7 +95,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.6265063
+  m_Radius: 0.95
   m_Height: 2.4045353
   m_Direction: 1
   m_Center: {x: 0, y: 1.4537067, z: 0}
@@ -111,8 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893e3a0be732e3e4f802d8f68a1e30be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 3
-  RotationSpeed: 90
+  MovementSpeed: 1.5
+  GravityAccel: -1
+  RotationSpeed: 180
   PhysicsVasePrefab: {fileID: 8661826332234944606, guid: 710bfca7c385a7343b1e34fb79acbc82, type: 3}
   MaxTilt: 30
   TiltControlStrength: 10
@@ -305,6 +306,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 34f18e3fd631cde459534d8d15736d79, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 3bef159fcc02dcd4e964bf440f6716c4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 71055f6ef7477a74f94f844bc51cd0f3, type: 2}
     - target: {fileID: 5866666021909216657, guid: 3bef159fcc02dcd4e964bf440f6716c4, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
