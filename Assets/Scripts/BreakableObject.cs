@@ -9,6 +9,8 @@ public class BreakableObject : MonoBehaviour
     public bool StartBreakable = false;
     public bool Breakable = false;
 
+    public int ScoreMultiplier = 100;
+
     private void Start()
     {
         if (StartBreakable)
@@ -53,7 +55,7 @@ public class BreakableObject : MonoBehaviour
                     RandomForce += 100;
                 }
 
-                Game.Instance.AddScore((int)(collision.impulse.magnitude * 100));
+                Game.Instance.AddScore((int)(collision.impulse.magnitude * ScoreMultiplier));
             }
         }
     }

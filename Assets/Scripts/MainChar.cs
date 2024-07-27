@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -65,6 +66,11 @@ public class MainChar : MonoBehaviour
 
         var keyboard = Keyboard.current;
         if (keyboard.rKey.wasPressedThisFrame)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if(keyboard.escapeKey.wasPressedThisFrame)
         {
             Time.timeScale = 1;
             SceneManager.LoadScene(0);
@@ -209,6 +215,19 @@ public class MainChar : MonoBehaviour
             if (CanControl)
                 StartCoroutine(VaseFall());
         }
+    }
+
+    public void StopChar()
+    {
+        CanControl = false;
+        MoveInput = Vector3.zero;
+        ControlMovement = Vector3.zero;
+        FallingStrength = 0;
+        OscilationStrength = 0;
+
+        Animator.SetFloat("MovementSpeed", 0);
+
+        Game.Instance.RepeatLevel();
     }
 }
 

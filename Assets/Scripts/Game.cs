@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,7 @@ public class Game : MonoBehaviour
     public int currentLevelPoints;
     public int totalPoints;
 
-    float LastScoreTime;
+    public float LastScoreTime;
 
     private void Awake()
     {
@@ -51,12 +52,10 @@ public class Game : MonoBehaviour
 
     IEnumerator LevelEndRoutine()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(3);
 
-
-        while (Time.time < LastScoreTime + 4)
+        while (Time.time < LastScoreTime + 2)
         {
-            print(Time.time + " < " + (LastScoreTime + 4));
             yield return null;
         }
 
@@ -70,10 +69,27 @@ public class Game : MonoBehaviour
         else
         {
             // Game End
-            print("GAME END!!");
-            SceneManager.LoadScene(0);
-
+            SceneManager.LoadScene("GameEnd");
         }
+    }
+
+    public void RepeatLevel()
+    {
+        StartCoroutine(RepeatLevelRoutine());
+    }
+
+    IEnumerator RepeatLevelRoutine()
+    {
+        yield return new WaitForSeconds(1);
+
+        var txt = FindObjectOfType<TextoPuntosNivel>().GetComponent<TMP_Text>();
+        txt.enabled = true;
+        txt.text = "+0 puntos";
+
+        yield return new WaitForSeconds(4);
+
+        currentLevelPoints = 0;
+        SceneManager.LoadScene(Levels[currentLevel]);
     }
 
 }

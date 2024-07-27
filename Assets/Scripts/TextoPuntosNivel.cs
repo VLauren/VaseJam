@@ -22,9 +22,11 @@ public class TextoPuntosNivel : MonoBehaviour
             Text.enabled = true;
             if(ScoreToShow < Game.Instance.currentLevelPoints)
             {
-                ScoreToShow += 20;
+                ScoreToShow += 40;
                 if (ScoreToShow > Game.Instance.currentLevelPoints)
                     ScoreToShow = Game.Instance.currentLevelPoints;
+
+                Game.Instance.LastScoreTime = Time.time;
             }
             Text.text = "+" + ScoreToShow;
         }

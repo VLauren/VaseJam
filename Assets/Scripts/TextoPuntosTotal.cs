@@ -13,6 +13,7 @@ public class TextoPuntosTotal : MonoBehaviour
     {
         Text = GetComponent<TMP_Text>();
         // Text.enabled = false;
+                    ScoreToShow = Game.Instance.totalPoints;
     }
 
     void Update()
@@ -22,7 +23,7 @@ public class TextoPuntosTotal : MonoBehaviour
             // Text.enabled = true;
             if(ScoreToShow < Game.Instance.totalPoints)
             {
-                ScoreToShow += 15;
+                ScoreToShow += 50;
                 if (ScoreToShow > Game.Instance.totalPoints)
                     ScoreToShow = Game.Instance.totalPoints;
             }

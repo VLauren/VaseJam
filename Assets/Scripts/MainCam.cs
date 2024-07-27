@@ -50,7 +50,7 @@ public class MainCam : MonoBehaviour
         {
             transform.position = Vector3.SmoothDamp(transform.position, EndCamera.transform.position, ref PosVel, 3f);
             // transform.rotation = Quaternion.RotateTowards(transform.rotation, EndCamera.transform.rotation, Time.deltaTime / 3f);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(EndLook - transform.position, Vector3.up), Time.deltaTime * 10);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(EndLook - EndCamera.transform.position, Vector3.up), Time.deltaTime * 17);
 
             // transform.LookAt(EndLook);
         }
