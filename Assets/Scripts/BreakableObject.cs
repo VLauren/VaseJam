@@ -53,7 +53,7 @@ public class BreakableObject : MonoBehaviour
                     RandomForce += 100;
                 }
 
-                Game.Instance.AddScore((int)collision.impulse.magnitude * 100);
+                Game.Instance.AddScore((int)(collision.impulse.magnitude * 100));
             }
         }
     }

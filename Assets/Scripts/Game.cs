@@ -31,6 +31,7 @@ public class Game : MonoBehaviour
     public void StartGame()
     {
         totalPoints = 0;
+        currentLevelPoints = 0;
         currentLevel = 0;
 
         SceneManager.LoadScene(Levels[0]);
@@ -62,6 +63,8 @@ public class Game : MonoBehaviour
         currentLevel++;
         if (currentLevel < Levels.Count)
         {
+            totalPoints += currentLevelPoints;
+            currentLevelPoints = 0;
             SceneManager.LoadScene(Levels[currentLevel]);
         }
         else

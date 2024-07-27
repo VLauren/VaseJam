@@ -16,7 +16,7 @@ public class MainCam : MonoBehaviour
 
     void Start()
     {
-        Offset = transform.position + MainChar.Instance.transform.position;
+        Offset = transform.position - MainChar.Instance.transform.position;
         EndCamera = GameObject.Find("EndCamera");
 
         if(EndCamera != null)
