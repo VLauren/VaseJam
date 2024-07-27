@@ -17,6 +17,6 @@ public class GameEndTxt : MonoBehaviour
         AudioManager.Stop("laurent_musica_rotura");
         AudioManager.Stop("laurent_musica_menu");
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 }

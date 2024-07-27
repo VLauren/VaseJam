@@ -125,4 +125,9 @@ public class Game : MonoBehaviour
             SceneManager.LoadScene("GameEnd");
         }
     }
+
+    public bool ShouldGoFast()
+    {
+        return currentLevel > 1;
+    }
 }

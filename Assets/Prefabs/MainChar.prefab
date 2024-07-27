@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 1.5
+  MovementSpeedFast: 3.5
   GravityAccel: -1
   RotationSpeed: 180
   PhysicsVasePrefab: {fileID: 8661826332234944606, guid: 710bfca7c385a7343b1e34fb79acbc82, type: 3}
@@ -145,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8530042000641715773}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.734, z: 0.554}
+  m_LocalPosition: {x: -0.16, y: 1.74, z: 0.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -190,23 +191,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9946892
+      value: 0.9986295
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.10292443
+      value: -0.052335896
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -11.815
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb6f5265633441141ad94849fc26da9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

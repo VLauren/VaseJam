@@ -10,6 +10,7 @@ public class MainChar : MonoBehaviour
     public static MainChar Instance { get; private set; }
 
     public float MovementSpeed;
+    public float MovementSpeedFast;
     public float GravityAccel = -1;
     public float RotationSpeed = 360;
 
@@ -142,11 +143,11 @@ public class MainChar : MonoBehaviour
         if (MoveInput.magnitude < 0.1f) MoveInput = Vector3.zero;
 
         ControlMovement = Vector3.zero;
-        ControlMovement = MoveInput * Time.deltaTime * MovementSpeed;
+        ControlMovement = MoveInput * Time.deltaTime * (Game.Instance.ShouldGoFast() ? MovementSpeedFast : MovementSpeed);
 
         if (Animator != null)
         {
-            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), MoveInput.magnitude, Time.deltaTime * 10);
+            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), MoveInput.magnitude * (Game.Instance.ShouldGoFast() ? MovementSpeedFast / MovementSpeed : 1), Time.deltaTime * 10);
             Animator.SetFloat("MovementSpeed", newMS);
         }
     }
@@ -182,7 +183,9 @@ public class MainChar : MonoBehaviour
         if(Vase != null)
         {
             // Control de inclinacion
-            Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * TiltControlStrength * BalanceInput);
+            if (CanControl)
+                Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * TiltControlStrength * BalanceInput);
+
             // Oscilacion aleatoria
             Vase.localEulerAngles = new Vector3(0, 0, Vase.localEulerAngles.z - Time.deltaTime * OscilationStrength * OscilationVal);
 
