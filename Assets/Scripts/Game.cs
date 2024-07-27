@@ -59,7 +59,7 @@ public class Game : MonoBehaviour
         AudioManager.Stop("laurent_musica_gameplay");
         AudioManager.Play("laurent_musica_rotura", true);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         while (Time.time < LastScoreTime + 3.5f)
         {
@@ -70,10 +70,20 @@ public class Game : MonoBehaviour
         if (currentLevel < Levels.Count)
         {
             currentLevelPoints = 0;
-            SceneManager.LoadScene(Levels[currentLevel]);
+
+            float vol = 0.5f;
+            while(vol > 0)
+            {
+                vol -= Time.deltaTime;
+                AudioManager.Play("laurent_musica_rotura", true, vol);
+                yield return null;
+            }
+
 
             AudioManager.Play("laurent_musica_gameplay", true);
             AudioManager.Stop("laurent_musica_rotura");
+
+            SceneManager.LoadScene(Levels[currentLevel]);
         }
         else
         {

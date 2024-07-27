@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1061672798626868972}
   - component: {fileID: 4112923751221715273}
   - component: {fileID: 2229560084898682243}
+  - component: {fileID: 4829597023759950990}
   m_Layer: 0
   m_Name: pelota
   m_TagString: Untagged
@@ -84,3 +85,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4829597023759950990
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427843500443776086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3072762541839431554, guid: a94fcbb220183d743b9512c43138c137, type: 3}
