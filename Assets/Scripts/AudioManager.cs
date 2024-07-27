@@ -60,6 +60,9 @@ public class AudioManager : MonoBehaviour
 
     public static void Stop(string _name)
     {
+        if (!source)
+            return;
+
         if (loopingSounds.ContainsKey(_name))
         {
             loopingSounds[_name].Stop();

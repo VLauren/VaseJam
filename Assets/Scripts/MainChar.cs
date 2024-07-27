@@ -68,6 +68,7 @@ public class MainChar : MonoBehaviour
         if (keyboard.rKey.wasPressedThisFrame)
         {
             Time.timeScale = 1;
+            Game.Instance.currentLevelPoints = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if(keyboard.escapeKey.wasPressedThisFrame)
@@ -109,7 +110,7 @@ public class MainChar : MonoBehaviour
         yield return null;
 
         float t = 0;
-        while(t < 0.7f)
+        while(t < 0.5f)
         {
             t += Time.deltaTime * 0.5f;
             Time.timeScale = 1 - t;
@@ -118,7 +119,7 @@ public class MainChar : MonoBehaviour
 
         while(t > 0f)
         {
-            t -= Time.deltaTime;
+            t -= Time.deltaTime * 0.5f;
             Time.timeScale = 1 - t;
             yield return null;
         }
