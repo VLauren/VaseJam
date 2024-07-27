@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    void OnAny()
+    void OnAny(InputValue value)
     {
-        SceneManager.LoadScene(0);
+        Game.Instance.StartGame();
     }
 }
