@@ -36,7 +36,7 @@ public class BreakableObject : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(contact.normal * 200 + Random.onUnitSphere * 300);
             }
 
-            if (collision.GetContact(0).otherCollider.gameObject.CompareTag("Ground"))
+            if (collision.GetContact(0).otherCollider.gameObject.CompareTag("Ground") || collision.GetContact(0).otherCollider.gameObject.CompareTag("Pelota"))
             {
                 Breakable = false;
 

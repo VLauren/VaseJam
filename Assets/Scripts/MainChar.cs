@@ -221,7 +221,15 @@ public class MainChar : MonoBehaviour
         if(other.gameObject.GetComponent<MainChar>() == null)
         {
             if (CanControl)
+            {
                 StartCoroutine(VaseFall());
+
+                if(other.CompareTag("Pelota"))
+                {
+                    print("???? pelota");
+                    other.GetComponent<Rigidbody>().velocity = transform.forward * 10 + transform.up * 5;
+                }
+            }
         }
     }
 
