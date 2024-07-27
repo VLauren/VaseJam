@@ -10,8 +10,8 @@ public class Game : MonoBehaviour
     public List<string> Levels;
 
     int currentLevel = 0;
-    int currentLevelPoints;
-    int totalPoints;
+    public int currentLevelPoints;
+    public int totalPoints;
 
     float LastScoreTime;
 

@@ -49,3 +49,6 @@ MonoBehaviour:
   - Level02
   - Level03
   - Level04
+  - Level05
+  currentLevelPoints: 0
+  totalPoints: 0
