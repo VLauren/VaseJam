@@ -140,4 +140,9 @@ public class Game : MonoBehaviour
     {
         return currentLevel > 1;
     }
+
+    public string GetLevelText()
+    {
+        return "nivel " + (currentLevel + 1) + " de " + Levels.Count;
+    }
 }

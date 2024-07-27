@@ -39,6 +39,7 @@ public class BreakableObject : MonoBehaviour
             if (collision.GetContact(0).otherCollider.gameObject.CompareTag("Ground") || collision.GetContact(0).otherCollider.gameObject.CompareTag("Pelota"))
             {
                 Breakable = false;
+                print(name);
 
                 Vector3 vel = GetComponent<Rigidbody>().velocity;
 

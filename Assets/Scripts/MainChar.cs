@@ -228,6 +228,7 @@ public class MainChar : MonoBehaviour
                 {
                     print("???? pelota");
                     other.GetComponent<Rigidbody>().velocity = transform.forward * 10 + transform.up * 5;
+                    other.GetComponent<Rigidbody>().angularVelocity = Random.onUnitSphere;
                 }
             }
         }
