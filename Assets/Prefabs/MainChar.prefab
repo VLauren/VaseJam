@@ -100,8 +100,10 @@ MonoBehaviour:
   RotationSpeed: 90
   PhysicsVasePrefab: {fileID: 8661826332234944606, guid: 710bfca7c385a7343b1e34fb79acbc82, type: 3}
   MaxTilt: 30
+  TiltControlStrength: 10
   OscilationStrength: 3
   OscilationFreq: 0.3
+  FallingStrength: 0
 --- !u!1 &8530042000641715773
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +285,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 34f18e3fd631cde459534d8d15736d79, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 3bef159fcc02dcd4e964bf440f6716c4, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bef159fcc02dcd4e964bf440f6716c4, type: 3}
 --- !u!4 &8548985841522149648 stripped

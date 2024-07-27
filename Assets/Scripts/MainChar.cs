@@ -42,6 +42,9 @@ public class MainChar : MonoBehaviour
     {
         Vase = transform.Find("Vase");
         InvokeRepeating("ChangeOsc", OscilationFreq, OscilationFreq);
+
+        if (transform.Find("Model"))
+            Animator = transform.Find("Model").GetComponent<Animator>();
     }
 
     void ChangeOsc()
@@ -89,6 +92,11 @@ public class MainChar : MonoBehaviour
 
         CanControl = false;
 
+        MoveInput = Vector3.zero;
+        ControlMovement = Vector3.zero;
+
+        if (Animator != null)
+            Animator.SetTrigger("Fall");
         // yield return new WaitForSeconds(0.5f);
 
         // physVase.GetComponentInChildren<BreakableObject>().Breakable = true;
