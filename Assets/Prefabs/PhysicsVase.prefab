@@ -736,7 +736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef1cc9b813b3c14685bb67ab4e37dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Breakable: 1
+  StartBreakable: 1
+  Breakable: 0
 --- !u!4 &3316751326758557413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb6f5265633441141ad94849fc26da9b, type: 3}

@@ -87,9 +87,12 @@ public class MainChar : MonoBehaviour
 
         physVase.GetComponentInChildren<BreakableObject>().GetComponent<Rigidbody>().AddForce((transform.right + Vector3.up) * 1000);
 
-        yield return new WaitForSeconds(0.5f);
+        CanControl = false;
 
-        physVase.GetComponentInChildren<BreakableObject>().Breakable = true;
+        // yield return new WaitForSeconds(0.5f);
+
+        // physVase.GetComponentInChildren<BreakableObject>().Breakable = true;
+        yield return null;
     }
 
     public float GetVaseTilt()
