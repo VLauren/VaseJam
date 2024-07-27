@@ -36,6 +36,10 @@ public class Game : MonoBehaviour
         currentLevel = 0;
 
         SceneManager.LoadScene(Levels[0]);
+
+        AudioManager.Play("laurent_musica_gameplay", true);
+        AudioManager.Stop("laurent_musica_rotura");
+        AudioManager.Stop("laurent_musica_menu");
     }
 
     public void AddScore(int _score)
@@ -52,6 +56,9 @@ public class Game : MonoBehaviour
 
     IEnumerator LevelEndRoutine()
     {
+        AudioManager.Stop("laurent_musica_gameplay");
+        AudioManager.Play("laurent_musica_rotura", true);
+
         yield return new WaitForSeconds(3);
 
         while (Time.time < LastScoreTime + 3.5f)
@@ -65,9 +72,16 @@ public class Game : MonoBehaviour
             // totalPoints += currentLevelPoints;
             currentLevelPoints = 0;
             SceneManager.LoadScene(Levels[currentLevel]);
+
+            AudioManager.Play("laurent_musica_gameplay", true);
+            AudioManager.Stop("laurent_musica_rotura");
         }
         else
         {
+            AudioManager.Stop("laurent_musica_gameplay");
+            AudioManager.Stop("laurent_musica_rotura");
+            AudioManager.Play("laurent_musica_menu", true);
+
             // Game End
             SceneManager.LoadScene("GameEnd");
         }

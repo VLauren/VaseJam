@@ -13,6 +13,10 @@ public class GameEndTxt : MonoBehaviour
 
     void OnAny()
     {
+        AudioManager.Stop("laurent_musica_gameplay");
+        AudioManager.Stop("laurent_musica_rotura");
+        AudioManager.Stop("laurent_musica_menu");
+
         SceneManager.LoadScene(0);
     }
 }
