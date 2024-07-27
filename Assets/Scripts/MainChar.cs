@@ -147,7 +147,7 @@ public class MainChar : MonoBehaviour
 
         if (Animator != null)
         {
-            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), MoveInput.magnitude * (Game.Instance.ShouldGoFast() ? MovementSpeedFast / MovementSpeed : 1), Time.deltaTime * 10);
+            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), MoveInput.magnitude * (Game.Instance.ShouldGoFast() ? 1 : 0.75f), Time.deltaTime * 10);
             Animator.SetFloat("MovementSpeed", newMS);
         }
     }
