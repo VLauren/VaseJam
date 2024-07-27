@@ -40,8 +40,8 @@ public class Game : MonoBehaviour
     public void AddScore(int _score)
     {
         currentLevelPoints += _score;
+        totalPoints += _score;
         LastScoreTime = Time.time;
-        print("score += " + _score + " - total: " + currentLevelPoints);
     }
 
     public void LevelEnd()
@@ -63,7 +63,7 @@ public class Game : MonoBehaviour
         currentLevel++;
         if (currentLevel < Levels.Count)
         {
-            totalPoints += currentLevelPoints;
+            // totalPoints += currentLevelPoints;
             currentLevelPoints = 0;
             SceneManager.LoadScene(Levels[currentLevel]);
         }

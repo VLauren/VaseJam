@@ -22,7 +22,7 @@ public class TextoPuntosTotal : MonoBehaviour
             // Text.enabled = true;
             if(ScoreToShow < Game.Instance.totalPoints)
             {
-                ScoreToShow += 200;
+                ScoreToShow += 15;
                 if (ScoreToShow > Game.Instance.totalPoints)
                     ScoreToShow = Game.Instance.totalPoints;
             }

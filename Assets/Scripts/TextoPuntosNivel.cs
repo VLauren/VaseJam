@@ -13,7 +13,6 @@ public class TextoPuntosNivel : MonoBehaviour
     {
         Text = GetComponent<TMP_Text>();
         Text.enabled = false;
-        print("fuera, no?");
     }
 
     void Update()
