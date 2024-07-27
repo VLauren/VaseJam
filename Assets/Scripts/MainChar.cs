@@ -73,7 +73,6 @@ public class MainChar : MonoBehaviour
     {
         float vaseAngle = Vector3.SignedAngle(Vector3.up, Vase.up, transform.forward);
 
-        Time.timeScale = 0.5f;
 
         GameObject physVase = Instantiate(PhysicsVasePrefab, Vase.Find("VaseModel").position, Vase.Find("VaseModel").rotation);
         physVase.transform.localScale = Vase.Find("VaseModel").localScale;
@@ -94,6 +93,22 @@ public class MainChar : MonoBehaviour
 
         // physVase.GetComponentInChildren<BreakableObject>().Breakable = true;
         yield return null;
+
+        float t = 0;
+        while(t < 0.7f)
+        {
+            t += Time.deltaTime * 0.5f;
+            Time.timeScale = 1 - t;
+            yield return null;
+        }
+
+        while(t > 0f)
+        {
+            t -= Time.deltaTime;
+            Time.timeScale = 1 - t;
+            yield return null;
+        }
+        Time.timeScale = 1;
     }
 
     public float GetVaseTilt()

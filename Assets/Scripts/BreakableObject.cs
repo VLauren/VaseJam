@@ -27,7 +27,6 @@ public class BreakableObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (Breakable)
         {
             foreach (var contact in collision.contacts)
@@ -37,15 +36,17 @@ public class BreakableObject : MonoBehaviour
 
             if (collision.GetContact(0).otherCollider.gameObject.CompareTag("Ground"))
             {
+                Breakable = false;
+
                 Vector3 vel = GetComponent<Rigidbody>().velocity;
 
-                Transform spawnPos = transform.root.Find("Object").GetChild(0).Find("SpawnPosition");
-                transform.root.Find("Object").gameObject.SetActive(false);
-                transform.root.Find("BrokenObject").position = spawnPos.position;
-                transform.root.Find("BrokenObject").rotation = spawnPos.rotation;
-                transform.root.Find("BrokenObject").gameObject.SetActive(true);
+                Transform spawnPos = transform.parent.parent.Find("Object").GetChild(0).Find("SpawnPosition");
+                transform.parent.parent.Find("Object").gameObject.SetActive(false);
+                transform.parent.parent.Find("BrokenObject").position = spawnPos.position;
+                transform.parent.parent.Find("BrokenObject").rotation = spawnPos.rotation;
+                transform.parent.parent.Find("BrokenObject").gameObject.SetActive(true);
 
-                foreach (Transform tr in transform.root.Find("BrokenObject"))
+                foreach (Transform tr in transform.parent.parent.Find("BrokenObject"))
                 {
                     tr.GetComponent<Rigidbody>().velocity = vel;
                     GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * RandomForce);
