@@ -53,7 +53,7 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(10);
 
 
-        while (Time.time < LastScoreTime + 7)
+        while (Time.time < LastScoreTime + 4)
         {
             print(Time.time + " < " + (LastScoreTime + 7));
             yield return null;
@@ -68,6 +68,8 @@ public class Game : MonoBehaviour
         {
             // Game End
             print("GAME END!!");
+            SceneManager.LoadScene(0);
+
         }
     }
 
