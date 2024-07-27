@@ -72,10 +72,24 @@ public class MainChar : MonoBehaviour
 
             if (vaseAngle > MaxTilt)
             {
-                Instantiate(PhysicsVasePrefab, Vase.Find("VaseModel").position, Vase.Find("VaseModel").rotation).transform.localScale = Vase.Find("VaseModel").localScale;
-                Destroy(Vase.gameObject);
+                StartCoroutine(VaseFall());
             }
         }
+    }
+
+    IEnumerator VaseFall()
+    {
+        GameObject physVase = Instantiate(PhysicsVasePrefab, Vase.Find("VaseModel").position, Vase.Find("VaseModel").rotation);
+        physVase.transform.localScale = Vase.Find("VaseModel").localScale;
+        physVase.GetComponentInChildren<BreakableObject>().Breakable = false;
+
+        Destroy(Vase.gameObject);
+
+        physVase.GetComponentInChildren<BreakableObject>().GetComponent<Rigidbody>().AddForce((transform.right + Vector3.up) * 1000);
+
+        yield return new WaitForSeconds(0.5f);
+
+        physVase.GetComponentInChildren<BreakableObject>().Breakable = true;
     }
 
     public float GetVaseTilt()
