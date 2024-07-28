@@ -61,7 +61,7 @@ public class Game : MonoBehaviour
         AudioManager.Stop("laurent_musica_gameplay");
         AudioManager.Play("laurent_musica_rotura", true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(currentLevel > 4 ? 7 : 5);
 
         while (Time.time < LastScoreTime + 3.5f)
         {
@@ -150,11 +150,10 @@ public class Game : MonoBehaviour
 
     public void SpawnFuego(Vector3 _position, Quaternion _rotation)
     {
-        print(_position + " fuego");
-        // if (currentLevel > 4 && Random.value < 0.25f)
-        if (Random.value < 0.25f)
+        if (currentLevel > 4 && Random.value < 0.25f)
+        // if (Random.value < 0.25f)
         {
-            Instantiate(PrefabFuego, _position, _rotation);
+            Instantiate(PrefabFuego, new Vector3(_position.x, 0, _position.z), _rotation);
         }
     }
 }
