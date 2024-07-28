@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     void OnAny(InputValue value)
     {
-        Game.Instance.StartGame();
+        if (Time.timeSinceLevelLoad > 1)
+            Game.Instance.StartGame();
     }
 }

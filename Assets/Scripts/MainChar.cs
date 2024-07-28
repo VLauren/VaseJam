@@ -111,9 +111,9 @@ public class MainChar : MonoBehaviour
         yield return null;
 
         float t = 0;
-        while(t < 0.5f)
+        while(t < 0.4f)
         {
-            t += Time.deltaTime * 0.5f;
+            t += Time.deltaTime * 0.4f;
             Time.timeScale = 1 - t;
             yield return null;
         }
@@ -226,7 +226,6 @@ public class MainChar : MonoBehaviour
 
                 if(other.CompareTag("Pelota"))
                 {
-                    print("???? pelota");
                     other.GetComponent<Rigidbody>().velocity = transform.forward * 10 + transform.up * 5;
                     other.GetComponent<Rigidbody>().angularVelocity = Random.onUnitSphere;
                 }
