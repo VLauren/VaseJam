@@ -11,6 +11,8 @@ public class BreakableObject : MonoBehaviour
 
     public int ScoreMultiplier = 100;
 
+    public bool SonidoJarron = true;
+
     private void Start()
     {
         if (StartBreakable)
@@ -58,6 +60,13 @@ public class BreakableObject : MonoBehaviour
                 Game.Instance.AddScore((int)(collision.impulse.magnitude * ScoreMultiplier));
 
                 Game.Instance.SpawnFuego(collision.GetContact(0).point, Quaternion.Euler(0, Random.value * 360, 0));
+
+                if(SonidoJarron)
+                {
+                    int index = Random.Range(1, 7);
+                    print(index);
+                    AudioManager.Play("jarron_rompe" + index, false, 0.35f);
+                }
             }
         }
     }

@@ -614,6 +614,7 @@ MonoBehaviour:
   StartBreakable: 1
   Breakable: 0
   ScoreMultiplier: 0
+  SonidoJarron: 0
 --- !u!4 &7655344787544977899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c177b32f348c3c4ba8d55ef187c42ec, type: 3}
