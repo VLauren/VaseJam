@@ -15,19 +15,53 @@ MonoBehaviour:
   active: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.2614476, g: 0.22312212, b: 0.4339623, a: 1}
+    m_Value: {r: 0.22352941, g: 0.28568834, b: 0.43529412, a: 1}
   center:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.459
+    m_Value: 0.466
   smoothness:
     m_OverrideState: 0
     m_Value: 0.2
   rounded:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &-1378776229746896793
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
+  m_EditorClassIdentifier: 
+  active: 1
+  shadows:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.9148689, z: 0.9911268, w: -0.5775401}
+  midtones:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.8764299, z: 0.8764299, w: 0.12834224}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {x: 0.9368295, y: 1, z: 0.79445714, w: 0.0855615}
+  shadowsStart:
+    m_OverrideState: 1
+    m_Value: 0
+  shadowsEnd:
+    m_OverrideState: 1
+    m_Value: 0.12
+  highlightsStart:
+    m_OverrideState: 1
+    m_Value: 0.25
+  highlightsEnd:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,8 +75,9 @@ MonoBehaviour:
   m_Name: Global Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -1732541001694884440}
   - {fileID: 7040916006516815348}
+  - {fileID: -1378776229746896793}
+  - {fileID: -1732541001694884440}
 --- !u!114 &7040916006516815348
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -59,7 +94,7 @@ MonoBehaviour:
   master:
     m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 3
+      <length>k__BackingField: 5
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -76,10 +111,28 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.5536232
-          value: 0.6358025
+          time: 0.13253012
+          value: 0.16129035
+          inSlope: 1.1775198
+          outSlope: 1.1775198
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.48985508
+          value: 0.6111111
           inSlope: 1
           outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.85507244
+          value: 0.8580247
+          inSlope: 0.70313525
+          outSlope: 0.70313525
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -97,9 +150,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   red:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 3
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -109,17 +162,26 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1
+          inSlope: 0
           outSlope: 1
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
+          time: 0.54518074
+          value: 0.63225806
+          inSlope: 1.1407284
+          outSlope: 1.1407284
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.96385545
           value: 1
           inSlope: 1
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -128,9 +190,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   green:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 4
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -140,8 +202,26 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1
+          inSlope: 0
           outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.24698795
+          value: 0.27741933
+          inSlope: 1.2249773
+          outSlope: 1.2249773
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.5090361
+          value: 0.5806452
+          inSlope: 0.9464372
+          outSlope: 0.9464372
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -150,7 +230,7 @@ MonoBehaviour:
           time: 1
           value: 1
           inSlope: 1
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -159,9 +239,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   blue:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 4
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -171,17 +251,35 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1
+          inSlope: 0
           outSlope: 1
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
+          time: 0.19130434
+          value: 0.17283952
+          inSlope: 1.0378488
+          outSlope: 1.0378488
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.49565217
+          value: 0.5123457
+          inSlope: 1.1000626
+          outSlope: 1.1000626
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.96231884
           value: 1
           inSlope: 1
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
