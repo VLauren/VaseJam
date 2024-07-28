@@ -50,5 +50,9 @@ MonoBehaviour:
   - Level03
   - Level04
   - Level05
+  - Level06
+  - Level07
   currentLevelPoints: 0
   totalPoints: 0
+  LastScoreTime: 0
+  PrefabFuego: {fileID: 9009056894198060673, guid: 0856bc8b48efa1c46887e03c6c548e5d, type: 3}

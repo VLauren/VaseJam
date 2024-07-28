@@ -70,6 +70,7 @@ public class MainChar : MonoBehaviour
         {
             Time.timeScale = 1;
             Game.Instance.currentLevelPoints = 0;
+            Game.Instance.StopAllCoroutines();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if(keyboard.escapeKey.wasPressedThisFrame)

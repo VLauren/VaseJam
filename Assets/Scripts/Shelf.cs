@@ -24,7 +24,7 @@ public class Shelf : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.impulse.sqrMagnitude > 10 && !Falling && CanFall)
+        if(collision.impulse.sqrMagnitude > 3 && !Falling && CanFall)
         {
             Fall();
         }

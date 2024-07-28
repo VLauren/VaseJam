@@ -56,6 +56,8 @@ public class BreakableObject : MonoBehaviour
                 }
 
                 Game.Instance.AddScore((int)(collision.impulse.magnitude * ScoreMultiplier));
+
+                Game.Instance.SpawnFuego(collision.GetContact(0).point, Quaternion.Euler(0, Random.value * 360, 0));
             }
         }
     }

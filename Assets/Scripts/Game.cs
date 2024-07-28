@@ -16,6 +16,8 @@ public class Game : MonoBehaviour
 
     public float LastScoreTime;
 
+    public GameObject PrefabFuego;
+
     private void Awake()
     {
         if(Instance == null)
@@ -144,5 +146,15 @@ public class Game : MonoBehaviour
     public string GetLevelText()
     {
         return "nivel " + (currentLevel + 1) + " de " + Levels.Count;
+    }
+
+    public void SpawnFuego(Vector3 _position, Quaternion _rotation)
+    {
+        print(_position + " fuego");
+        // if (currentLevel > 4 && Random.value < 0.25f)
+        if (Random.value < 0.25f)
+        {
+            Instantiate(PrefabFuego, _position, _rotation);
+        }
     }
 }
