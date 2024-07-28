@@ -22,7 +22,11 @@ public class TextoPuntosNivel : MonoBehaviour
             Text.enabled = true;
             if(ScoreToShow < Game.Instance.currentLevelPoints)
             {
-                ScoreToShow += 40;
+                if (Game.Instance.currentLevelPoints - ScoreToShow > 40000)
+                    ScoreToShow += 40;
+                else
+                    ScoreToShow += 300;
+
                 if (ScoreToShow > Game.Instance.currentLevelPoints)
                     ScoreToShow = Game.Instance.currentLevelPoints;
 

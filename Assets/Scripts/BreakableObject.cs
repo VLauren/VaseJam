@@ -64,7 +64,6 @@ public class BreakableObject : MonoBehaviour
                 if(SonidoJarron)
                 {
                     int index = Random.Range(1, 7);
-                    print(index);
                     AudioManager.Play("jarron_rompe" + index, false, 0.35f);
                 }
             }

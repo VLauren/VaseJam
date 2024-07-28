@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class StepAudio : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Step()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int index = Random.Range(1, 6);
+        AudioManager.Play("paso" + index, false, 0.35f);
     }
 }

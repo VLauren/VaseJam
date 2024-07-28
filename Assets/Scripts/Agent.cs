@@ -21,12 +21,16 @@ public class Agent : MonoBehaviour
 
     protected float WalkedDistance = 0;
 
+    float randomDelay;
+
     private void Start()
     {
         Vase = transform.Find("Vase");
 
         if (transform.Find("Model"))
             Animator = transform.Find("Model").GetComponent<Animator>();
+
+        randomDelay = Random.value;
     }
 
 
@@ -62,7 +66,7 @@ public class Agent : MonoBehaviour
     {
         if (Animator != null)
         {
-            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), MovementSpeed > 0 ? WalkAnimationSpeed : 0, Time.deltaTime * 10);
+            float newMS = Mathf.MoveTowards(Animator.GetFloat("MovementSpeed"), (Time.timeSinceLevelLoad > randomDelay ? MovementSpeed : 0) > 0 ? WalkAnimationSpeed : 0, Time.deltaTime * 10);
             Animator.SetFloat("MovementSpeed", newMS);
         }
     }
@@ -78,9 +82,9 @@ public class Agent : MonoBehaviour
 
         bool grounded = GetComponent<CharacterController>().isGrounded;
 
-        GetComponent<CharacterController>().Move(transform.forward * MovementSpeed * Time.deltaTime + new Vector3(0, VerticalVelocity, 0));
+        GetComponent<CharacterController>().Move(transform.forward * (Time.timeSinceLevelLoad > randomDelay ? MovementSpeed : 0) * Time.deltaTime + new Vector3(0, VerticalVelocity, 0));
 
-        WalkedDistance += MovementSpeed * Time.deltaTime;
+        WalkedDistance += (Time.timeSinceLevelLoad > randomDelay ? MovementSpeed : 0) * Time.deltaTime;
         if (WalkedDistance > WalkDistance)
             MovementSpeed = 0;
     }
