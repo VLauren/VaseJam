@@ -154,7 +154,7 @@ public class Game : MonoBehaviour
         // if (Random.value < 0.25f)
         {
             Instantiate(PrefabFuego, new Vector3(_position.x, 0, _position.z), _rotation);
-            AudioManager.Play("fuego", false, 0.6f);
+            AudioManager.Play("fuego", false, 0.8f);
         }
     }
 }
